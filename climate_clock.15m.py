@@ -9,7 +9,7 @@
 # <xbar.author>Niklas Bogensperger</xbar.author>
 # <xbar.author.github>niklasbogensperger</xbar.author.github>
 # <xbar.desc>Climate clock deadline from climateclock.world in the menu bar</xbar.desc>
-# <xbar.dependencies>pip: pendulum, requests</xbar.dependencies>
+# <xbar.dependencies>python, pendulum, requests</xbar.dependencies>
 # <xbar.abouturl>https://github.com/niklasbogensperger/climate-clock-menu-bar</xbar.abouturl>
 # <swiftbar.hideAbout>true</swiftbar.hideAbout>
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>
