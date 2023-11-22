@@ -1,4 +1,4 @@
-# openconnect-menu-bar
+# climate-clock-menu-bar
 
 SwiftBar/xbar plugin to see the climate clock deadline from [climateclock.world](https://climateclock.world/) in the menu bar
 
