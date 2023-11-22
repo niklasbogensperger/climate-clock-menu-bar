@@ -77,7 +77,7 @@ deadline = get_carbon_deadline_timestamp_requests()
 if deadline is not None:
     countdown = calculate_countdown(deadline)
     # print(f"{countdown['years']}YRS {countdown['days']}DAYS {countdown['hours']:02}:{countdown['minutes']:02}:{countdown['seconds']:02}| color=pink")
-    print(f"{countdown['years']}YRS {countdown['days']}DAYS {countdown['hours']:02}HRS| color=pink")
+    print(f"{countdown['years']}ʏʀꜱ {countdown['days']}ᴅᴀʏꜱ {countdown['hours']:02}ʜʀꜱ| color=pink")
     print('---')
     print("Deadline to limit global warming to 1.5°C: | disabled=true")
     print(f"{countdown['deadline']} | disabled=true color=red")
