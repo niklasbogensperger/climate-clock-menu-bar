@@ -23,6 +23,15 @@ import subprocess
 import pendulum
 import requests
 
+#########################################################
+# CONFIGURATION #
+#########################################################
+
+LABELS_LONG = False
+MINUTES_SECONDS = False
+
+#########################################################
+
 
 def get_carbon_deadline_timestamp_requests():
     url = "https://api.climateclock.world/v2/clock.json"
@@ -73,11 +82,26 @@ def calculate_countdown(deadline_str):
     }
 
 
+def title_string(countdown):
+    years = countdown["years"]
+    days = countdown["days"]
+    hours = countdown["hours"]
+    minutes = countdown["minutes"]
+    seconds = countdown["seconds"]
+
+    y_label, d_label, h_label = " ʏ", " ᴅ", " ʜ"
+    if LABELS_LONG:
+        y_label, d_label, h_label = " ʏʀꜱ", " ᴅᴀʏꜱ", " ʜʀꜱ"
+
+    if MINUTES_SECONDS:
+        return f"{years}{y_label} {days}{d_label} {hours:02}:{minutes:02}:{seconds:02}"
+    return f"{years}{y_label} {days}{d_label} {hours:02}{h_label}"
+
+
 deadline = get_carbon_deadline_timestamp_requests()
 if deadline is not None:
     countdown = calculate_countdown(deadline)
-    # print(f"{countdown['years']}YRS {countdown['days']}DAYS {countdown['hours']:02}:{countdown['minutes']:02}:{countdown['seconds']:02}| color=pink")
-    print(f"{countdown['years']}ʏʀꜱ {countdown['days']}ᴅᴀʏꜱ {countdown['hours']:02}ʜʀꜱ| color=pink")
+    print(f"{title_string(countdown)} | color=pink")
     print('---')
     print("Deadline to limit global warming to 1.5°C: | disabled=true")
     print(f"{countdown['deadline']} | disabled=true color=red")
