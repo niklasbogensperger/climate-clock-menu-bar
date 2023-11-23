@@ -18,7 +18,8 @@
 # <swiftbar.hideSwiftBar>true</swiftbar.hideSwiftBar>
 
 
-import subprocess
+import json
+import os
 
 import pendulum
 import requests
@@ -27,35 +28,84 @@ import requests
 # CONFIGURATION #
 #########################################################
 
+# CUSTOMIZE AT LEAST THIS VARIABLE BEFORE RUNNING
+# file to use for the cache (name can be changed); file should not yet exist and path should be absolute
+# when saving to SwiftBar scripts folder: keep leading dot (.) in filename to skip registering the file as another SwiftBar plugin
+CACHE_FILE = "/absolute/path/to/folder/of/choice/.climate_clock_timestamp.json"
+
+# whether to use long or short labels (e.g. "ʏʀꜱ" vs. "ʏ")
 LABELS_LONG = False
+# whether to display minutes and seconds as well (set refresh rate of script to 1s (or a bit less))
 MINUTES_SECONDS = False
+
+# change in the event of the API URL changing
+# (likely would require changes in code as well)
+API_URL = "https://api.climateclock.world/v2/clock.json"
 
 #########################################################
 
 
-def get_carbon_deadline_timestamp_requests():
-    url = "https://api.climateclock.world/v2/clock.json"
-
-    response = requests.get(url)
-
-    if response.status_code == 200:
-        data = response.json()
-        timestamp = data['data']['modules']['carbon_deadline_1']['timestamp']
-        return timestamp
-    else:
-        print(f"Error: {response.status_code}")
+def query_api():
+    try:
+        response = requests.get(API_URL)
+        response.raise_for_status()
+    except requests.RequestException as e:
+        print(f"Error querying API: {e}")
         return None
-
-
-def get_carbon_deadline_timestamp_shell():
-    command = "curl https://api.climateclock.world/v2/clock.json | jq '.data.modules.carbon_deadline_1.timestamp'"
 
     try:
-        result = subprocess.check_output(command, shell=True, text=True).strip().replace('"', '')
-        return result
-    except subprocess.CalledProcessError as e:
-        print(f"Error: {e}")
+        data = response.json()
+        deadline = data['data']['modules']['carbon_deadline_1']['timestamp']
+        return deadline
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON response: {e}")
         return None
+    except KeyError as e:
+        print(f"Error extracting deadline from response: {e}")
+        return None
+
+
+def read_cache():
+    try:
+        if os.path.exists(CACHE_FILE):
+            with open(CACHE_FILE, 'r') as file:
+                cache_data = json.load(file)
+                timestamp = cache_data.get('timestamp')
+                deadline = cache_data.get('deadline')
+                return timestamp, deadline
+    except (IOError, json.JSONDecodeError, KeyError) as e:
+        print(f"Error during cache read: {e}")
+        return None
+
+
+def write_cache(timestamp, deadline):
+    try:
+        with open(CACHE_FILE, 'w') as file:
+            cache_data = {'timestamp': timestamp, 'deadline': deadline}
+            json.dump(cache_data, file)
+            return True
+    except IOError as e:
+        print(f"Error during cache write: {e}")
+        return False
+
+
+def get_or_update_deadline():
+    cache_data = read_cache()
+    if cache_data is not None:
+        timestamp, deadline = cache_data
+        # only query the API if the cache is older than a day
+        if pendulum.now() - pendulum.parse(timestamp) < pendulum.duration(hours=24):
+            return deadline
+    else:
+        deadline = None
+
+    new_deadline = query_api()
+    if new_deadline is not None:
+        write_cache(pendulum.now().isoformat(), new_deadline)
+        return new_deadline
+
+    # always (try to) return cached value as a fallback should there be an error during updating
+    return deadline
 
 
 def calculate_countdown(deadline_str):
@@ -98,7 +148,7 @@ def title_string(countdown):
     return f"{years}{y_label} {days}{d_label} {hours:02}{h_label}"
 
 
-deadline = get_carbon_deadline_timestamp_requests()
+deadline = get_or_update_deadline()
 if deadline is not None:
     countdown = calculate_countdown(deadline)
     print(f"{title_string(countdown)} | color=pink")
