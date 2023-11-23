@@ -118,7 +118,7 @@ def calculate_countdown(deadline_str):
     minutes = difference.minutes
     seconds = difference.remaining_seconds
 
-    # need to this to get the remaining months and days only in days
+    # need to do this to get the remaining months and days only in days
     date_only_days_remaining = now.add(years=years, hours=hours, minutes=minutes, seconds=seconds)
     days = deadline.diff(date_only_days_remaining).in_days()
 
@@ -139,6 +139,7 @@ def title_string(countdown):
     minutes = countdown["minutes"]
     seconds = countdown["seconds"]
 
+    # strings contain unicode "thin space" and "small capital letter" glyphs
     y_label, d_label, h_label = " ʏ", " ᴅ", " ʜ"
     if LABELS_LONG:
         y_label, d_label, h_label = " ʏʀꜱ", " ᴅᴀʏꜱ", " ʜʀꜱ"
