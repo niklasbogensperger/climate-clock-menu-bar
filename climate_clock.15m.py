@@ -5,7 +5,7 @@
 #########################################################
 
 # <swiftbar.title>Climate Clock</swiftbar.title>
-# <swiftbar.version>v1.3</swiftbar.version>
+# <swiftbar.version>v2.0</swiftbar.version>
 # <swiftbar.author>Niklas Bogensperger</swiftbar.author>
 # <swiftbar.author.github>niklasbogensperger</swiftbar.author.github>
 # <swiftbar.desc>Climate clock deadline from climateclock.world in the menu bar</swiftbar.desc>
