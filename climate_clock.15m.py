@@ -4,13 +4,13 @@
 # SWIFTBAR METADATA #
 #########################################################
 
-# <swiftbar.title>Climate Clock</swiftbar.title>
-# <swiftbar.version>v2.0</swiftbar.version>
-# <swiftbar.author>Niklas Bogensperger</swiftbar.author>
-# <swiftbar.author.github>niklasbogensperger</swiftbar.author.github>
-# <swiftbar.desc>Climate clock deadline from climateclock.world in the menu bar</swiftbar.desc>
-# <swiftbar.dependencies>python, pendulum, requests</swiftbar.dependencies>
-# <swiftbar.abouturl>https://github.com/niklasbogensperger/climate-clock-menu-bar</swiftbar.abouturl>
+# <xbar.title>Climate Clock</xbar.title>
+# <xbar.version>v2.0</xbar.version>
+# <xbar.author>Niklas Bogensperger</xbar.author>
+# <xbar.author.github>niklasbogensperger</xbar.author.github>
+# <xbar.desc>Climate clock deadline from climateclock.world in the menu bar</xbar.desc>
+# <xbar.dependencies>python, pendulum, requests</xbar.dependencies>
+# <xbar.abouturl>https://github.com/niklasbogensperger/climate-clock-menu-bar</xbar.abouturl>
 # <swiftbar.hideAbout>true</swiftbar.hideAbout>
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>
 # <swiftbar.hideLastUpdated>true</swiftbar.hideLastUpdated>
