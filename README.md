@@ -1,13 +1,11 @@
 # climate-clock-menu-bar
 
-SwiftBar/xbar plugin to see the climate clock deadline from [climateclock.world](https://climateclock.world/) in the menu bar
+SwiftBar plugin to see the climate clock deadline from [climateclock.world](https://climateclock.world/) in the menu bar.
 
 
 ## Purpose
 
-This script provides a countdown clock to the deadline set by [climateclock.world](https://climateclock.world/) (until which we need to limit global warming to 1.5°C) to the macOS menu bar using either of these two apps:
-- [SwiftBar (recommended)](https://github.com/swiftbar/SwiftBar)
-- [xbar](https://xbarapp.com/)
+This script provides a countdown clock to the deadline set by [climateclock.world](https://climateclock.world/) (until which we need to limit global warming to 1.5°C) to the macOS menu bar using [SwiftBar](https://github.com/swiftbar/SwiftBar).
 
 To minimize API calls and provide better performance, it keeps the current deadline in a cache file (see instructions below) and only queries the API once every 24h, as the value gets adjusted rarely.
 
@@ -19,10 +17,9 @@ To minimize API calls and provide better performance, it keeps the current deadl
 
 ## Setup
 
-### 1. Install the latest SwiftBar or xbar release
+### 1. Install the latest SwiftBar release
 
-- [SwiftBar (recommended)](https://github.com/swiftbar/SwiftBar)
-- [xbar](https://xbarapp.com/)
+Follow the instructions on the [SwiftBar](https://github.com/swiftbar/SwiftBar) page.
 
 
 ### 2. Ensure you have Python3 and the required packages installed
@@ -45,18 +42,16 @@ pip3 install --user pendulum requests
 ### 3. Download the "climate_clock.15m.py" script
 
 1. [Download](https://github.com/niklasbogensperger/climate-clock-menu-bar/blob/main/climate_clock.15m.py) the file
-2. Open it in a plain text editor or IDE of your choice
-3. Set the configuration variables according to your liking (or leave the optional ones as the default); see also next section below
-4. Copy/Move it to the SwiftBar/xbar script folder that you or the app chose
-5. Make sure the file is executable: `chmod +x climate_clock.15m.py`
+2. Should you want to modify the default configuration (see next section):
+   - Open the file in a plain text editor or IDE of your choice
+   - Set the configuration variables according to your liking
+3. Copy/Move it to the SwiftBar script folder that you or the app chose
+4. Make sure the file is executable: `chmod +x climate_clock.15m.py`
 
 
 ### 4. Configuration options
 
-The (absolute) path to use for the cache file should be set with the `CACHE_FILE` variable. The default file name is `.climate_clock_timestamp.json`, but can be changed as well.<br />
-**Note**: If you direct this file to the folder where you save your SwiftBar plugins, you should keep it hidden with the leading period in the filename. Otherwise, SwiftBar will think it is a plugin file as well and throw an error. (This behavior is not tested for xbar.)
-
-In addition, you can easily tweak how the clock gets displayed in the menu bar:<br />
+You can easily tweak how the clock gets displayed in the menu bar:<br />
 `LABELS_LONG` controls whether to use long or short labels, and `MINUTES_SECONDS` controls whether to show a full clock with minutes and seconds or just the hours with a label.<br />
 **Note**: When using the `MINUTES_SECONDS` option, you should set the refresh rate of the script accordingly (in the filename itself, see [here](https://github.com/swiftbar/SwiftBar#plugin-naming)). 
 
@@ -68,6 +63,10 @@ Refer to the table below to see which format you prefer.
 | False         | True              | 0 ʏ 000 ᴅ 00:00:00      | adjust refresh rate (see note above) |
 | True          | False             | 0 ʏʀꜱ 000 ᴅᴀʏꜱ 00 ʜʀꜱ   |                                      |
 | True          | True              | 0 ʏʀꜱ 000 ᴅᴀʏꜱ 00:00:00 | adjust refresh rate (see note above) |
+
+In addition, you can change where the cache file is saved by changing the (absolute) path in the `CACHE_FILE` variable. The sensible default is the cache directory for this plugin, which is automatically created by SwiftBar.
+
+Lastly, should the API move to a different URL at some point in the future, this can be incorporated by changing the URL in the `API_URL` variable. Note, however, that such a change will probably necessitate tweaks in the rest of the code as well.
 
 
 ### 5. Miscellaneous tips/tricks and notes
