@@ -1,16 +1,16 @@
 #! /usr/bin/env python3
 
 #########################################################
-# XBAR / SWIFTBAR METADATA #
+# SWIFTBAR METADATA #
 #########################################################
 
-# <xbar.title>Climate Clock</xbar.title>
-# <xbar.version>v1.3</xbar.version>
-# <xbar.author>Niklas Bogensperger</xbar.author>
-# <xbar.author.github>niklasbogensperger</xbar.author.github>
-# <xbar.desc>Climate clock deadline from climateclock.world in the menu bar</xbar.desc>
-# <xbar.dependencies>python, pendulum, requests</xbar.dependencies>
-# <xbar.abouturl>https://github.com/niklasbogensperger/climate-clock-menu-bar</xbar.abouturl>
+# <swiftbar.title>Climate Clock</swiftbar.title>
+# <swiftbar.version>v1.3</swiftbar.version>
+# <swiftbar.author>Niklas Bogensperger</swiftbar.author>
+# <swiftbar.author.github>niklasbogensperger</swiftbar.author.github>
+# <swiftbar.desc>Climate clock deadline from climateclock.world in the menu bar</swiftbar.desc>
+# <swiftbar.dependencies>python, pendulum, requests</swiftbar.dependencies>
+# <swiftbar.abouturl>https://github.com/niklasbogensperger/climate-clock-menu-bar</swiftbar.abouturl>
 # <swiftbar.hideAbout>true</swiftbar.hideAbout>
 # <swiftbar.hideRunInTerminal>true</swiftbar.hideRunInTerminal>
 # <swiftbar.hideLastUpdated>true</swiftbar.hideLastUpdated>
@@ -28,18 +28,18 @@ import requests
 # CONFIGURATION #
 #########################################################
 
-# CUSTOMIZE AT LEAST THIS VARIABLE BEFORE RUNNING
-# file to use for the cache (name can be changed); file should not yet exist and path should be absolute
-# when saving to SwiftBar scripts folder: keep leading dot (.) in filename to skip registering the file as another SwiftBar plugin
-CACHE_FILE = "/absolute/path/to/folder/of/choice/.climate_clock_timestamp.json"
-
 # whether to use long or short labels (e.g. "ʏʀꜱ" vs. "ʏ")
+# default: False (short labels)
 LABELS_LONG = False
 # whether to display minutes and seconds as well (set refresh rate of script to 1s (or a bit less))
+# default: False (do not display minutes/seconds)
 MINUTES_SECONDS = False
 
-# change in the event of the API URL changing
-# (likely would require changes in code as well)
+# CHANGES USUALLY NOT NEEDED
+# file to use for the cache
+# default: SwiftBar cache directory for this plugin
+CACHE_FILE = f"{os.getenv('SWIFTBAR_PLUGIN_CACHE_PATH')}/climate_clock_timestamp.json"
+# API URL to query (any changes likely would require code modifications as well)
 API_URL = "https://api.climateclock.world/v2/clock.json"
 
 #########################################################
