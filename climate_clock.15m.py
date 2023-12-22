@@ -5,7 +5,7 @@
 #########################################################
 
 # <xbar.title>Climate Clock</xbar.title>
-# <xbar.version>v2.1</xbar.version>
+# <xbar.version>v2.2</xbar.version>
 # <xbar.author>Niklas Bogensperger</xbar.author>
 # <xbar.author.github>niklasbogensperger</xbar.author.github>
 # <xbar.desc>Climate clock deadline from climateclock.world in the menu bar</xbar.desc>
