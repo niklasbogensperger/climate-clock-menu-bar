@@ -1,6 +1,6 @@
 # climate-clock-menu-bar
 
-SwiftBar plugin to see the climate clock deadline from [climateclock.world](https://climateclock.world/) in the menu bar.
+SwiftBar plugin to see the climate clock deadline from [climateclock.world](https://climateclock.world/) in the menu bar
 
 
 ## Purpose
@@ -69,7 +69,10 @@ In addition, you can change where the cache file is saved by changing the (absol
 Lastly, should the API move to a different URL at some point in the future, this can be incorporated by changing the URL in the `API_URL` variable. Note, however, that such a change will probably necessitate tweaks in the rest of the code as well.
 
 
-### 5. Miscellaneous tips/tricks and notes
+## Miscellaneous tips/tricks and notes
 
-- Hold the <kbd>⌥ Option</kbd> key while clicking on the menu bar entry to bring up SwiftBar options that are hidden by default (only applies to SwiftBar)
-- Hold the <kbd>⌘ Command</kbd> key to drag the menu bar entry to the desired spot
+> [!TIP]
+> Hold the <kbd>⌥ Option</kbd> key while clicking on the menu bar entry to bring up SwiftBar options that are hidden by default.
+
+> [!TIP]
+> Hold the <kbd>⌘ Command</kbd> key to drag the menu bar entry to the desired spot.
