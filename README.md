@@ -33,18 +33,18 @@ Furthermore, the following two packages are needed from PyPi:
 - pendulum
 - requests
 
-Install them e.g. via pip (your setup may differ):
+Install them in a virtual environment (recommended), e.g. via `uv`:
 ```shell
-pip3 install --user pendulum requests
+uv init && uv add pendulum requests
 ```
 
 
 ### 3. Download the "climate_clock.15m.py" script
 
 1. [Download](https://github.com/niklasbogensperger/climate-clock-menu-bar/blob/main/climate_clock.15m.py) the file
-2. Should you want to modify the default configuration (see next section):
-   - Open the file in a plain text editor or IDE of your choice
-   - Set the configuration variables according to your liking
+2. Open the file in a plain text editor or IDE of your choice
+   - Change the first line of the script to point to the python3 executable located within the virtual environment created above
+   - Should you want to modify the default configuration, set the configuration variables according to your liking (see next section)
 3. Copy/Move it to the SwiftBar script folder that you or the app chose
 4. Make sure the file is executable: `chmod +x climate_clock.15m.py`
 
