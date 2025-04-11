@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! /usr/bin/env <absolute path to python3 venv with pendulum and requests installed>
 
 #########################################################
 # SWIFTBAR METADATA #
